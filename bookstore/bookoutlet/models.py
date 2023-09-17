@@ -18,5 +18,5 @@ class Book(models.Model):
         return reverse('book-detail', args=[self.slug])
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.slug)
+        self.slug = slugify(self.title)
         super().save(*args, **kwargs)

@@ -10,8 +10,8 @@ def index(request):
 
     return render(request, 'bookoutlet/index.html', {
         'books': books,
-        'total_number_of_books': books.count()
-        'average_rating': books.aggregate(Avg'rating')
+        'total_number_of_books': books.count(),
+        'average_rating': books.aggregate(Avg('rating'))
     })
 
 
