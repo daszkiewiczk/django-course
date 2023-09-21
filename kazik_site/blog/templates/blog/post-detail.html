@@ -13,12 +13,26 @@ Post Title
 <section id='summary'>
     <h2> {{ post.title }}</h2>
     <article>
-        <img src="{% static 'blog/images/' | add:post.image %}" alt= {{  post.title }} />
+        <img src="{{ post.image.url }}" alt="{{  post.title }}" />
         <address>By <a href="mailto:{{ post.author.email_address }}">{{ post.author }}</a></address>
         <div>
             Posted on <time> {{ post.date | date:'d M Y' }}</time>
         </div>
     </article>
+</section>
+<section>
+    where
+    <form action="{% url 'toggle-read-later' post.slug %}" method="POST">
+        {% csrf_token %}
+        <button>
+        {% if not marked %}
+        add to readlater
+        {% else %}
+        remove from readlater
+        {% endif %}
+        </button>
+
+    </form>
 </section>
 <main>
     <p class="tag">
@@ -29,6 +43,23 @@ Post Title
     <p>
         {{ post.content | linebreaks }}
     </p>
+
 </main>
+<section id="add-comments">
+    <form action="{% url 'post-detail-page' post.slug %}" method="POST">
+    {% csrf_token %}
+    {{ add_comment_form }}
+    <button>Comment</button>
+    </form>
+</section> 
+<section id="comments">
+    <ul>
+   {% for comment in comments  %} 
+   <li>{{comment.author}} muwi rze: {{comment.content}}</li>
+   {% endfor %}
+    </ul>
+</section>
+
+
 
 {% endblock %}
