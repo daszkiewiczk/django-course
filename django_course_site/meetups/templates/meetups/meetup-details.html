@@ -1,0 +1,32 @@
+{% load static %}
+{% block title %}
+{{ meetup.title }}
+{% endblock title %}
+{% block body %}
+{% if meetup_found %}
+    <article>
+        <img src="" alt="">
+        <section id="location">
+            <h2>Meetup Location</h2>
+            <address>This meetup takes place in <span>{{ meetup.location }}</span> at {{ meetup.date }} </address>
+        </section>
+        <section id="details">
+            <h2>Meetup Details</h2>
+            <p>{{ meetup.description }}</p>
+            {% comment %} <p>Organized by {{ meetup.organizer }}</p> {% endcomment %}
+            <footer>Need more info? Contact <a href="mailto:{{ meetup.organizer_email }}">{{ meetup.organizer_email }}</a></footer>
+        </section>
+
+        <section id="registration">
+            <h2>Join!</h2>
+            <form action="{% url "meetup-detail" meetup.slug %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_ul }}
+                <button>Register</button>
+            </form>
+        </section>
+    </article>
+{% else %}
+<p>Sorry, no meetup found.</p>
+{% endif %}
+{% endblock body %}

@@ -20,3 +20,5 @@ class ReviewForm(forms.ModelForm):
             'review_text': 'ur feedback',
             'rating': 'ur rating',
         }
+
+# Register your models here.

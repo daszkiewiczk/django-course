@@ -1,0 +1,5 @@
+<h3>{{ meetup_item.title }}</h3>
+<address>{{ meetup_item.location }}</address>
+<img src="{{ image.url }}" alt="">
+{% comment %} <a href="/meetups/{{ meetup_item.slug }}">More Details</a> {% endcomment %}
+<a href="{% url 'meetup-detail' meetup_item.slug %}">More Details</a>

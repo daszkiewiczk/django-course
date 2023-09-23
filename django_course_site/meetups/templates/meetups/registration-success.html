@@ -1,0 +1,14 @@
+{% extends "meetups/base/base.html" %}
+{% load static %}
+{% block title %}You have registered successfully{% endblock title %}
+{% block main_heading %}{% endblock main_heading %}
+{% block body %}
+<section>
+    <h2>You have registered successfully</h2>
+    <p>THanks for siginig up</p>
+
+</section>
+<section>
+    <p><a href="{% url "all-meetups" %}">more meetups</a></p>
+</section>
+{% endblock body %}

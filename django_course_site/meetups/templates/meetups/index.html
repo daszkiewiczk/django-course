@@ -1,0 +1,26 @@
+{% extends "meetups/base/base.html" %}
+{% load static %}
+{% block title %}All Mettups{% endblock title %}
+{% block site_css %}
+
+{% endblock site_css %}
+{% block main_heading %}
+        <h1>We got great meetups coming up!</h1> 
+{% endblock main_heading %}
+{% block header_content %}
+        <a href="/meetups">DjangoMeetups</a>
+        <p>Find meetups neaaar your</p>
+{% endblock header_content %}
+{% block body %}
+    {% comment %} henlo
+    <p>henlo</p> {% endcomment %}
+    {% if show_meetups %}
+    {% comment %} <h2>{{ meetups }}</h2> {% endcomment %}
+    {% comment %} <h2>{{ meetups.0.title }}</h2> {% endcomment %}
+        {% for meetup_item in meetups %}
+            {% include "meetups/includes/meetup-item.html" with title=meetup_item.title location=meetup_item.location image=meetup_item.image %}
+        {% endfor %}
+    {% else %}
+    <p>no meetups exist</p>
+    {% endif %}
+{% endblock body %}
